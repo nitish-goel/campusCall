@@ -1,220 +1,184 @@
-🎓 CampusFeedback – Dynamic Feedback Management System
+# 🎓 CampusFeedback
 
-A dynamic feedback management system built using Core PHP, MySQL, JWT Authentication, and Bootstrap 5.
+A Dynamic Feedback Management System built using **Core PHP, MySQL, JWT
+Authentication, and Bootstrap 5**.
 
-CampusFeedback allows administrators to create and manage feedback forms, while students can submit responses to the currently active form.
+This system allows admins to create feedback forms and students to
+submit responses to the currently active form.
 
-🚀 Features
-👨‍💼 Admin Panel
+------------------------------------------------------------------------
 
-Secure JWT-based authentication (HttpOnly cookie)
+## 🚀 Features
 
-Create multiple feedback forms
+### 👨‍💼 Admin Panel
 
-Only one form can be active at a time
+-   Secure JWT Authentication (HttpOnly Cookie)
+-   Create multiple feedback forms
+-   Only one form can be active at a time
+-   Add dynamic fields:
+    -   Text
+    -   Textarea
+    -   Radio (with options)
+    -   Checkbox (with options)
+-   Edit / Delete fields
+-   Manage forms
+-   Responsive admin dashboard
 
-Add dynamic fields:
+### 🎓 Student Side
 
-Text
+-   Automatically loads active form
+-   Dynamic form rendering
+-   Anonymous feedback submission
+-   Stores responses in database
 
-Textarea
+------------------------------------------------------------------------
 
-Radio (with options)
+## 🛠 Tech Stack
 
-Checkbox (with options)
+-   PHP (Core PHP, OOP)
+-   MySQL
+-   Bootstrap 5
+-   Firebase PHP-JWT
+-   PDO (Prepared Statements)
 
-Edit / Delete fields
+------------------------------------------------------------------------
 
-Manage all forms
+## 📂 Project Structure
 
-Activate / Deactivate forms
+CampusFeedback/ 
+│ 
+├── config/ 
+│   └── Database.php 
+│ 
+├── api/ 
+│   ├──login.php 
+│   ├── create_form.php 
+│   ├── add_field.php 
+│   ├── get_forms.php
+│   ├── get_fields.php 
+│   ├── update_field.php 
+│   ├── delete_field.php 
+│   ├── set_active_form.php 
+│   └── submit.php 
+│   
+├── helper/ 
+│   ├──AuthMiddleware.php 
+│   └── JWTService.php 
+│
+├── views/ 
+│   ├── admin/
+│   └──site/ 
+│
+├── assets/ 
+│   └── css/ 
+│
+├── vendor/ 
+└── composer.json
 
-View submissions (if implemented)
+------------------------------------------------------------------------
 
-Clean responsive admin layout
+## 🗄 Database Tables
 
-🎓 Student Side
+### forms
 
-Automatically loads the active form
+-   id
+-   title
+-   description
+-   is_active
+-   created_at
 
-Dynamic form rendering
+### fields
 
-Supports radio & checkbox options
+-   id
+-   form_id
+-   label
+-   type
+-   options
 
-Stores submissions in database
+### submissions
 
-Anonymous response system
+-   id
+-   form_id
+-   submitted_at
 
-🛠 Tech Stack
+### submission_answers
 
-Backend: Core PHP (OOP)
+-   id
+-   submission_id
+-   field_id
+-   answer
 
-Database: MySQL
+------------------------------------------------------------------------
 
-Authentication: Firebase JWT
+## ⚙ Installation
 
-Frontend: Bootstrap 5
+### 1. Clone Repository
 
-Architecture: API-based structure
-
-Security: Middleware protected routes
-
-📂 Project Structure
-/config
-    Database.php
-
-/api
-    login.php
-    create_form.php
-    add_field.php
-    get_forms.php
-    get_fields.php
-    update_field.php
-    delete_field.php
-    set_active_form.php
-    submit.php
-
-/helper
-    AuthMiddleware.php
-    JWTService.php
-
-/views
-    /admin
-        /layout
-            header.php
-            sidebar.php
-            footer.php
-        dashboard.php
-        manage_forms.php
-        manage_fields.php
-        login.php
-    /site
-        form.php
-
-/assets
-    /css
-        style.css
-
-/vendor
-composer.json
-🔐 Authentication Flow
-
-Admin logs in
-
-JWT token is generated
-
-Token stored in HttpOnly cookie
-
-All protected APIs use AuthMiddleware
-
-Unauthorized users redirected to login page
-
-🗄 Database Schema
-forms
-Column	Type
-id	INT (PK)
-title	VARCHAR
-description	TEXT
-is_active	TINYINT(1)
-created_at	TIMESTAMP
-fields
-Column	Type
-id	INT (PK)
-form_id	INT
-label	VARCHAR
-type	VARCHAR
-options	TEXT
-submissions
-Column	Type
-id	INT
-form_id	INT
-submitted_at	TIMESTAMP
-submission_answers
-Column	Type
-id	INT
-submission_id	INT
-field_id	INT
-answer	TEXT
-⚙ Installation Guide
-1️⃣ Clone Repository
 git clone https://github.com/yourusername/CampusFeedback.git
-2️⃣ Install Dependencies
+
+### 2. Install Dependencies
+
 composer install
-3️⃣ Configure Database
 
-Create a MySQL database
+### 3. Configure Database
 
-Update /config/Database.php with your credentials
+Update database credentials inside:
 
-4️⃣ Import Database Tables
+/config/Database.php
 
-Run SQL scripts to create required tables.
+### 4. Import Database Tables
 
-5️⃣ Start Project
+Create required tables in MySQL.
 
-Place project inside:
+### 5. Run Project
 
-htdocs/ (XAMPP)
+Place the project inside:
+
+htdocs/ (for XAMPP)
 
 Open in browser:
 
 http://localhost/CampusFeedback/views/admin/login.php
-🎯 How It Works
 
-Admin creates forms.
+------------------------------------------------------------------------
 
-Admin adds dynamic fields.
+## 🔐 Authentication Flow
 
-Admin sets one form as active.
+1.  Admin logs in
+2.  JWT token is generated
+3.  Token stored in HttpOnly cookie
+4.  Middleware validates token on protected routes
 
-Student opens form page.
+------------------------------------------------------------------------
 
-System loads active form automatically.
+## 🎯 How It Works
 
-Student submits response.
+1.  Admin creates form\
+2.  Admin adds fields\
+3.  Admin sets one form as active\
+4.  Student opens form page\
+5.  Student submits feedback\
+6.  Data stored in database
 
-Data stored in submissions tables.
+------------------------------------------------------------------------
 
-🔒 Security Features
+## 🛡 Security
 
-JWT authentication
+-   JWT Authentication
+-   HttpOnly Cookie
+-   Middleware Protection
+-   PDO Prepared Statements
+-   Input Validation
 
-Middleware route protection
+------------------------------------------------------------------------
 
-HttpOnly cookie storage
+## 👨‍💻 Author
 
-Input validation
+Nitish Goel\
+Backend Developer (PHP \| CodeIgniter \| Laravel)
 
-Prepared statements (PDO)
+------------------------------------------------------------------------
 
-📸 Screenshots
+## 📄 License
 
-(Add screenshots here)
-
-Example:
-
-/screenshots/dashboard.png
-/screenshots/manage-forms.png
-/screenshots/student-form.png
-🧠 Future Improvements
-
-Form scheduling (start & end date)
-
-Analytics dashboard
-
-CSV export
-
-Drag & drop field ordering
-
-Role-based access control
-
-Email notification system
-
-👨‍💻 Author
-
-Nitish Goel
-Backend Developer (PHP, CodeIgniter, Laravel)
-
-📄 License
-
-This project is developed for educational and learning purposes.
+This project is for educational and learning purposes.
