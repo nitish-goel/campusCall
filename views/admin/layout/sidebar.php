@@ -85,13 +85,13 @@
             </a>
         </li>
 
-        <li class="nav-item mb-2 w-100">
+        <!-- <li class="nav-item mb-2 w-100">
             <a class="nav-link d-flex align-items-center"
                href="/CampusFeedback/views/admin/users.php">
                 <i class="bi bi-people me-2"></i>
                 Users
             </a>
-        </li>
+        </li> -->
 
     </ul>
 

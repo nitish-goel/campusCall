@@ -2,9 +2,11 @@
 <?php include 'layout/sidebar.php'; ?>
 
 <div class="container mt-4">
-
-    <h3 class="mb-4">Manage Forms</h3>
-
+    <div class="d-flex justify-content-between">
+        <h3 class="mb-4">Manage Forms</h3>
+        <a href="./create_form.php" class="btn btn-secondary btn-sm mb-4">            <i class="bi bi-cloud-arrow-down-fill"></i>
+Create Form</a>
+    </div>
     <div id="formsList"></div>
 
 </div>
@@ -34,7 +36,7 @@ function loadForms(){
                             <h5>
                             <span class="badge bg-${form.is_active == 1 
                                     ? 'success' 
-                                    : 'danger'} ms-2 px-4 py-2"> ${form.title}</span>
+                                    : 'danger'} "> ${form.title}</span>
                                 
                             </h5>
                             <small class="text-muted">${form.description ?? ''}</small>
@@ -43,25 +45,25 @@ function loadForms(){
                         <div>
 
                             ${form.is_active == 0 
-                                ? `<button class="btn btn-sm btn-success me-2 mb-1"
+                                ? `<button class="btn btn-sm btn-outline-success me-2 mb-1"
                                     onclick="activateForm(${form.id})">
                                     Set Active
                                 </button>`
                                 : ''}
 
                             <a href="manage_fields.php?form_id=${form.id}" 
-                            class="btn btn-sm btn-primary me-2 mb-1">
-                            Manage Fields
+                            class="btn btn-sm btn-outline-primary me-2 mb-1">
+                            <i class="bi bi-kanban-fill"></i>Manage Fields
                             </a>
 
-                            <button class="btn btn-sm btn-info me-2 mb-1"
+                            <button class="btn btn-sm btn-outline-info me-2 mb-1"
                                 onclick="editForm(${form.id}, '${form.title}', '${form.description ?? ''}')">
-                                Edit
+                                <i class="bi bi-pencil-square"></i>   Edit
                             </button>
 
-                            <button class="btn btn-sm btn-warning mb-1"
+                            <button class="btn btn-sm btn-outline-warning mb-1"
                                 onclick="deleteForm(${form.id})">
-                                Delete
+                                <i class="bi bi-trash"></i>Delete
                             </button>
                         </div>
 

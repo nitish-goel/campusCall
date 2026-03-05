@@ -120,7 +120,16 @@ fetch("../../api/get_forms.php?id=" + formId)
             </div>
         `;
     });
-
+        form.innerHTML += `
+            <div class="form-group">
+            <label class="form-label">University Roll Number</label>
+            <input type="text" 
+                name="roll_number" 
+                class="form-control" 
+                placeholder="Enter your roll number"
+                required>
+            </div>
+            `;
         form.innerHTML += `
         <div class="d-grid mt-3">
             <button type="submit" class="btn btn-primary btn-lg">
