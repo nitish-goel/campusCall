@@ -15,7 +15,7 @@ class JWTService {
         $payload = [
             "iss" => "CampusFeedback",
             "iat" => time(),
-            "exp" => time() + 30,
+            "exp" => time() + 900,
             "data" => [
                 "id" => $user['id'],
                 "role" => 'admin_id',

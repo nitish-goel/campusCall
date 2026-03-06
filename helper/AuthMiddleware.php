@@ -21,7 +21,22 @@ class AuthMiddleware {
                 "message" => "Invalid token"
             ];
         }
-
+        /* Refresh token automatically */
+        $newToken = JWTService::generate([
+            "id"=>$decoded->data->id,
+            "role" => 'admin_id',
+            "name"=>$decoded->data->name
+            ]);
+            
+        setcookie("token",$newToken,[
+            "expires"=>time()+900,
+            "path"=>"/",
+            "httponly"=>true,
+            "secure" => false, // true if using https
+            "samesite" => "Lax"
+            ]);    
+    
+    
         return [
             "status" => true,
             "user" => $decoded
